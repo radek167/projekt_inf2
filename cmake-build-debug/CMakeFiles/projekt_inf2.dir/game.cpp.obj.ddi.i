@@ -107260,6 +107260,7 @@ void __attribute__((dllimport)) sleep(Time duration);
 # 47 "C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Window.hpp" 2 3 4
 # 60 "C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Graphics.hpp" 2 3 4
 # 5 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h" 1
 # 1 "C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/iostream" 1 3
 # 36 "C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/iostream" 3
@@ -107347,7 +107348,7 @@ public:
         return wysokosc;
     }
 };
-# 6 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 7 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 1
 
 
@@ -107442,7 +107443,7 @@ public:
         return radius;
     };
 };
-# 7 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 8 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/brick.h" 1
 
 
@@ -107497,141 +107498,238 @@ inline void Brick::draw(sf::RenderTarget &target) const {
     if (!m_jestZniszczony)
         target.draw(*this);
 }
-# 8 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 9 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/menu.h" 1
+       
 
+
+
+
+
+class Menu {
+private:
+    sf::Font font;
+    std::vector<sf::Text> menu;
+    int selectedItem = 0;
+
+public:
+    Menu(float width, float height);
+    ~Menu() {};
+    void przesunG();
+    void przesunD();
+    int getSelectedItem() const { return selectedItem; }
+    void draw(sf::RenderWindow &window) const;
+};
+
+inline Menu::Menu(float width, float height) {
+    if (!font.openFromFile("arial.ttf"))
+        return;
+
+    sf::Text t(font);
+
+    t.setFont(font);
+    t.setFillColor(sf::Color::Cyan);
+    t.setString("Nowa gra");
+    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 1));
+    menu.push_back(t);
+
+    t.setFillColor(sf::Color::White);
+    t.setString("Ostatnie wyniki");
+    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 2));
+    menu.push_back(t);
+
+    t.setFillColor(sf::Color::White);
+    t.setString(L"Wyjście");
+    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 3));
+    menu.push_back(t);
+}
+
+inline void Menu::draw(sf::RenderWindow &window) const {
+    for (int i = 0; i < 3; i++)
+        window.draw(menu[i]);
+}
+
+inline void Menu::przesunG() {
+    menu[selectedItem].setFillColor(sf::Color::White);
+    menu[selectedItem].setStyle(sf::Text::Regular);
+    selectedItem--;
+    if (selectedItem < 0)
+        selectedItem = 3 - 1;
+    menu[selectedItem].setFillColor(sf::Color::Cyan);
+    menu[selectedItem].setStyle(sf::Text::Bold);
+}
+
+inline void Menu::przesunD() {
+    menu[selectedItem].setFillColor(sf::Color::White);
+    menu[selectedItem].setStyle(sf::Text::Regular);
+    selectedItem++;
+    if (selectedItem >= 3)
+        selectedItem = 0;
+    menu[selectedItem].setFillColor(sf::Color::Cyan);
+    menu[selectedItem].setStyle(sf::Text::Bold);
+}
+# 10 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+
+enum class GameState { Menu, Playing, Scores, Exiting };
 
 class Game {
 private:
     sf::RenderWindow window;
-    sf::Clock m_deltaClock;
+    sf::Clock deltaClock;
+
     Paletka paletka;
     Pilka pilka;
     std::vector<Brick> bloki;
 
-    float width = 640.f;
-    float height = 480.f;
+    Menu menu;
+
+    const float width = 640.f;
+    const float height = 480.f;
+
     const int ILOSC_KOLUMN = 6;
     const int ILOSC_WIERSZY = 7;
-    float ROZMIAR_BLOKU_X = (width -(ILOSC_KOLUMN - 1) * 2.f)/ILOSC_KOLUMN;
+    float ROZMIAR_BLOKU_X = (width - (ILOSC_KOLUMN - 1) * 2.f) / ILOSC_KOLUMN;
     float ROZMIAR_BLOKU_Y = 25.f;
 
     bool gameOver = false;
+    GameState currentState = GameState::Menu;
+
+private:
+    void processEvents();
+    void update(sf::Time dt);
+    void render();;
+    void resetGame();
+
 public:
     Game();
     void run();
 };
 # 2 "C:/Users/Radek/CLionProjects/projekt_inf2/game.cpp" 2
 
-# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h" 1
-# 4 "C:/Users/Radek/CLionProjects/projekt_inf2/game.cpp" 2
-# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 1
-# 5 "C:/Users/Radek/CLionProjects/projekt_inf2/game.cpp" 2
-
-
 
 Game::Game()
-    : window(sf::VideoMode({640, 480}), "Arkanoid TEST"),
+    : window(sf::VideoMode({640u, 480u}), "Arkanoid SFML"),
+      menu(640.f, 480.f),
       paletka(320.f, 450.f, 100.f, 20.f, 10.f),
-      pilka(320.f, 400.f, 4.f, -4.f, 10.f)
+      pilka(320.f, 400.f, 4.f, -4.f, 10.f),
+      currentState(GameState::Menu)
 {
     window.setFramerateLimit(60);
+    resetGame();
+}
 
-    for (int y=0; y<ILOSC_WIERSZY; y++) {
-        for (int x=0; x<ILOSC_KOLUMN; x++) {
-            float posX = x * (ROZMIAR_BLOKU_X +2.f);
-            float posY = y * (ROZMIAR_BLOKU_Y +2.f)+60.f;
+void Game::run() {
+    while (window.isOpen()) {
+        processEvents();
+        sf::Time dt = deltaClock.restart();
+        if (currentState == GameState::Playing)
+            update(dt);
+        render();
+    }
+}
 
-            int L;
-            if (y == 0) {
-                L = 3;
-            } else if (y < 3) {
-                L = 2;
-            } else {
-                L = 1;
+void Game::processEvents() {
+    while (auto eventOpt = window.pollEvent()) {
+        auto &event = *eventOpt;
+
+        if (event.is<sf::Event::Closed>()) {
+            window.close();
+        }
+
+        if (auto keyPressed = event.getIf<sf::Event::KeyPressed>()) {
+            auto key = keyPressed->scancode;
+
+            if (key == sf::Keyboard::Scan::Escape) {
+                if (currentState == GameState::Playing)
+                    currentState = GameState::Menu;
+                else
+                    window.close();
             }
 
-            bloki.emplace_back(sf::Vector2f(posX,posY), sf::Vector2f(ROZMIAR_BLOKU_X,ROZMIAR_BLOKU_Y), L);
+            if (currentState == GameState::Menu) {
+                if (key == sf::Keyboard::Scan::Up) menu.przesunG();
+                if (key == sf::Keyboard::Scan::Down) menu.przesunD();
+                if (key == sf::Keyboard::Scan::Enter) {
+                    int sel = menu.getSelectedItem();
+                    if (sel == 0) currentState = GameState::Playing;
+                    else if (sel == 1) currentState = GameState::Scores;
+                    else if (sel == 2) window.close();
+                }
+            }
         }
     }
 }
-void Game::run() {
-   while (window.isOpen()) {
-            while (auto event = window.pollEvent()) {
-                if (event->is<sf::Event::Closed>()) window.close();
-            }
 
-            if (!gameOver) {
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-                    paletka.moveLeft();
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-                    paletka.moveRight();
+void Game::update(sf::Time dt) {
+    if (currentState != GameState::Playing) return;
 
-                paletka.clampToBounds(width);
-                pilka.move();
-                pilka.collideWalls(width, height);
+    if (!gameOver) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
+            paletka.moveLeft();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
+            paletka.moveRight();
 
-                if (pilka.collidePaddle(paletka))
-                    std::cout << "HIT PADDLE\n";
+        paletka.clampToBounds(640.f);
 
-                if (pilka.getY() + pilka.getRadius() > height) {
-                    std::cout << "MISS! KONIEC GRY\n SPACJA = RESTART\n";
-                    gameOver = true;
+        pilka.move();
+        pilka.collideWalls(640.f, 480.f);
 
+        if (pilka.collidePaddle(paletka))
+            std::cout << "HIT PADDLE\n";
 
-                }
-
-            }
-            if (gameOver == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-                gameOver = false;
-                paletka = Paletka(320.f, 450.f, 100.f, 20.f, 10.f);
-                pilka = Pilka(320.f, 400.f, 4.f, -4.f, 10.f);
-                bloki.clear();
-                for (int y=0; y<ILOSC_WIERSZY; y++) {
-                    for (int x=0; x<ILOSC_KOLUMN; x++) {
-                        float posX = x * (ROZMIAR_BLOKU_X +2.f);
-                        float posY = y * (ROZMIAR_BLOKU_Y +2.f)+60.f;
-
-                        int L;
-                        if (y == 0) {
-                            L = 3;
-                        } else if (y < 3) {
-                            L = 2;
-                        } else {
-                            L = 1;
-                        }
-
-                        bloki.emplace_back(sf::Vector2f(posX,posY), sf::Vector2f(ROZMIAR_BLOKU_X,ROZMIAR_BLOKU_Y), L);
-                    }
-                }
-
-            }
-
-
-
-            for (auto& blk : bloki) {
-                if (!blk.m_czyZniszczony() && pilka.shape.getGlobalBounds().findIntersection(blk.getGlobalBounds()) ) {
-                    blk.trafienie();
-                    pilka.bounceY();
-                    std::cout << "HIT BRICK\n";
-                }
-                for (int i = bloki.size() -1; i >=0; i--) {
-                    if (bloki[i].m_czyZniszczony()){
-                        bloki.erase(bloki.begin() + i);
-                    }
-                }
-            }
-
-
-
-            window.clear(sf::Color(20, 20, 30));
-            paletka.draw(window);
-            pilka.draw(window);
-
-
-            for (auto& blk : bloki) {
-                blk.draw(window);
-            }
-
-            window.display();
+        if (pilka.getY() + pilka.getRadius() > 600.f) {
+            std::cout << "MISS! KONIEC GRY. SPACJA = RESTART\n";
+            gameOver = true;
         }
+
+        for (auto &blk : bloki) {
+            if (!blk.m_czyZniszczony() &&
+                pilka.shape.getGlobalBounds().findIntersection(blk.getGlobalBounds())) {
+                blk.trafienie();
+                pilka.bounceY();
+                std::cout << "HIT BRICK\n";
+            }
+        }
+
+        for (int i = bloki.size() - 1; i >= 0; i--) {
+            if (bloki[i].m_czyZniszczony())
+                bloki.erase(bloki.begin() + i);
+        }
+    }
+
+    if (gameOver && sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
+        resetGame();
+}
+
+void Game::render() {
+    window.clear(sf::Color(20, 20, 30));
+
+    if (currentState == GameState::Menu)
+        menu.draw(window);
+    else if (currentState == GameState::Playing) {
+        paletka.draw(window);
+        pilka.draw(window);
+        for (auto &blk : bloki)
+            blk.draw(window);
+    }
+
+    window.display();
+}
+
+void Game::resetGame() {
+    gameOver = false;
+    paletka = Paletka(320.f, 450.f, 100.f, 20.f, 10.f);
+    pilka = Pilka(320.f, 400.f, 4.f, -4.f, 10.f);
+
+    bloki.clear();
+    for (int y = 0; y < ILOSC_WIERSZY; y++) {
+        for (int x = 0; x < ILOSC_KOLUMN; x++) {
+            float posX = x * (ROZMIAR_BLOKU_X + 2.f);
+            float posY = y * (ROZMIAR_BLOKU_Y + 2.f) + 60.f;
+            int L = (y == 0) ? 3 : (y < 3) ? 2 : 1;
+            bloki.emplace_back(sf::Vector2f(posX, posY), sf::Vector2f(ROZMIAR_BLOKU_X, ROZMIAR_BLOKU_Y), L);
+        }
+    }
 }

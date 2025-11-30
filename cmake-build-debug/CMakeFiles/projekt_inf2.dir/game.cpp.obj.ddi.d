@@ -309,4 +309,5 @@ CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi: \
  C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h \
  C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/iostream \
  C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h \
- C:/Users/Radek/CLionProjects/projekt_inf2/brick.h
+ C:/Users/Radek/CLionProjects/projekt_inf2/brick.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/menu.h

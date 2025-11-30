@@ -107290,6 +107290,7 @@ namespace std
 
 
 
+
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h" 1
 
 
@@ -107349,7 +107350,7 @@ public:
         return wysokosc;
     }
 };
-# 6 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 7 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 1
 
 
@@ -107444,7 +107445,7 @@ public:
         return radius;
     };
 };
-# 7 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 8 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/brick.h" 1
 
 
@@ -107499,25 +107500,108 @@ inline void Brick::draw(sf::RenderTarget &target) const {
     if (!m_jestZniszczony)
         target.draw(*this);
 }
-# 8 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 9 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/menu.h" 1
+       
 
+
+
+
+
+class Menu {
+private:
+    sf::Font font;
+    std::vector<sf::Text> menu;
+    int selectedItem = 0;
+
+public:
+    Menu(float width, float height);
+    ~Menu() {};
+    void przesunG();
+    void przesunD();
+    int getSelectedItem() const { return selectedItem; }
+    void draw(sf::RenderWindow &window) const;
+};
+
+inline Menu::Menu(float width, float height) {
+    if (!font.openFromFile("arial.ttf"))
+        return;
+
+    sf::Text t(font);
+
+    t.setFont(font);
+    t.setFillColor(sf::Color::Cyan);
+    t.setString("Nowa gra");
+    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 1));
+    menu.push_back(t);
+
+    t.setFillColor(sf::Color::White);
+    t.setString("Ostatnie wyniki");
+    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 2));
+    menu.push_back(t);
+
+    t.setFillColor(sf::Color::White);
+    t.setString(L"Wyjście");
+    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 3));
+    menu.push_back(t);
+}
+
+inline void Menu::draw(sf::RenderWindow &window) const {
+    for (int i = 0; i < 3; i++)
+        window.draw(menu[i]);
+}
+
+inline void Menu::przesunG() {
+    menu[selectedItem].setFillColor(sf::Color::White);
+    menu[selectedItem].setStyle(sf::Text::Regular);
+    selectedItem--;
+    if (selectedItem < 0)
+        selectedItem = 3 - 1;
+    menu[selectedItem].setFillColor(sf::Color::Cyan);
+    menu[selectedItem].setStyle(sf::Text::Bold);
+}
+
+inline void Menu::przesunD() {
+    menu[selectedItem].setFillColor(sf::Color::White);
+    menu[selectedItem].setStyle(sf::Text::Regular);
+    selectedItem++;
+    if (selectedItem >= 3)
+        selectedItem = 0;
+    menu[selectedItem].setFillColor(sf::Color::Cyan);
+    menu[selectedItem].setStyle(sf::Text::Bold);
+}
+# 10 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+
+enum class GameState { Menu, Playing, Scores, Exiting };
 
 class Game {
 private:
     sf::RenderWindow window;
-    sf::Clock m_deltaClock;
+    sf::Clock deltaClock;
+
     Paletka paletka;
     Pilka pilka;
     std::vector<Brick> bloki;
 
-    float width = 640.f;
-    float height = 480.f;
+    Menu menu;
+
+    const float width = 640.f;
+    const float height = 480.f;
+
     const int ILOSC_KOLUMN = 6;
     const int ILOSC_WIERSZY = 7;
-    float ROZMIAR_BLOKU_X = (width -(ILOSC_KOLUMN - 1) * 2.f)/ILOSC_KOLUMN;
+    float ROZMIAR_BLOKU_X = (width - (ILOSC_KOLUMN - 1) * 2.f) / ILOSC_KOLUMN;
     float ROZMIAR_BLOKU_Y = 25.f;
 
     bool gameOver = false;
+    GameState currentState = GameState::Menu;
+
+private:
+    void processEvents();
+    void update(sf::Time dt);
+    void render();;
+    void resetGame();
+
 public:
     Game();
     void run();
