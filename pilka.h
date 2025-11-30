@@ -1,3 +1,4 @@
+
 #include <iostream>
 
 #define sfml_pilka_h
@@ -6,9 +7,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "paletka.h"
-
-
-
 
 class Pilka {
 private:
@@ -26,10 +24,7 @@ public:
         shape.setOrigin(sf::Vector2f(radius, radius));
         shape.setPosition(sf::Vector2f(x, y));
         shape.setFillColor(sf::Color::Red);
-
     }
-
-
     void move() {
         x = x + vx;
         y = y + vy;
@@ -67,10 +62,8 @@ public:
 
             return true;
         }
-
         return false;
     }
-
     void draw(sf::RenderTarget &target) {
         target.draw(shape);
     }
@@ -86,8 +79,18 @@ public:
     float getVy() const {
         return vy;
     };
+    sf::Vector2f getVelocity() const {
+        return sf::Vector2f(vx, vy);
+    }
     float getRadius() const {
         return radius;
     };
-};
+    void reset(float newX, float newY, float newVx, float newVy) {
+        x = newX;
+        y = newY;
+        vx = newVx;
+        vy = newVy;
+        shape.setPosition(sf::Vector2f(x, y));
+    }
+    };
 #endif

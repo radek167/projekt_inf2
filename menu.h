@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#define MAX_LICZBA_POZIOMOW 3
+#define MAX_LICZBA_POZIOMOW 4
 
 class Menu {
 private:
@@ -24,21 +24,26 @@ inline Menu::Menu(float width, float height) {
         return;
 
     sf::Text t(font);
-
     t.setFont(font);
     t.setFillColor(sf::Color::Cyan);
     t.setString("Nowa gra");
-    t.setPosition(sf::Vector2f(width / 3, height / (MAX_LICZBA_POZIOMOW + 1) * 1));
+    t.setPosition(sf::Vector2f(width / 4, height / (MAX_LICZBA_POZIOMOW + 1) * 1));
+    menu.push_back(t);
+
+    t.setFont(font);
+    t.setFillColor(sf::Color::Cyan);
+    t.setString(L"Wczytaj grę");
+    t.setPosition(sf::Vector2f(width / 4, height / (MAX_LICZBA_POZIOMOW + 1) * 2));
     menu.push_back(t);
 
     t.setFillColor(sf::Color::White);
     t.setString("Ostatnie wyniki");
-    t.setPosition(sf::Vector2f(width / 3, height / (MAX_LICZBA_POZIOMOW + 1) * 2));
+    t.setPosition(sf::Vector2f(width / 4, height / (MAX_LICZBA_POZIOMOW + 1) * 3));
     menu.push_back(t);
 
     t.setFillColor(sf::Color::White);
     t.setString(L"Wyjście");
-    t.setPosition(sf::Vector2f(width / 3, height / (MAX_LICZBA_POZIOMOW + 1) * 3));
+    t.setPosition(sf::Vector2f(width / 4, height / (MAX_LICZBA_POZIOMOW + 1) * 4));
     menu.push_back(t);
 }
 
@@ -46,7 +51,6 @@ inline void Menu::draw(sf::RenderWindow &window) const {
     for (int i = 0; i < MAX_LICZBA_POZIOMOW; i++)
         window.draw(menu[i]);
 }
-
 inline void Menu::przesunG() {
     menu[selectedItem].setFillColor(sf::Color::White);
     menu[selectedItem].setStyle(sf::Text::Regular);
@@ -56,7 +60,6 @@ inline void Menu::przesunG() {
     menu[selectedItem].setFillColor(sf::Color::Cyan);
     menu[selectedItem].setStyle(sf::Text::Bold);
 }
-
 inline void Menu::przesunD() {
     menu[selectedItem].setFillColor(sf::Color::White);
     menu[selectedItem].setStyle(sf::Text::Regular);

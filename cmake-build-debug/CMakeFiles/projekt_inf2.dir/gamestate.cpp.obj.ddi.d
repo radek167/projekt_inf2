@@ -1,5 +1,6 @@
-CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi: \
- C:/Users/Radek/CLionProjects/projekt_inf2/game.cpp \
+CMakeFiles\projekt_inf2.dir\gamestate.cpp.obj.ddi: \
+ C:/Users/Radek/CLionProjects/projekt_inf2/gamestate.cpp \
+ C:/Users/Radek/CLionProjects/projekt_inf2/gamestate.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/game.h \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Graphics.hpp \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Graphics/BlendMode.hpp \
@@ -311,4 +312,7 @@ CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi: \
  C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/brick.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/menu.h \
- C:/Users/Radek/CLionProjects/projekt_inf2/gamestate.h
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/fstream \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/fstream.tcc

@@ -14,7 +14,6 @@ class Game {
 private:
     sf::RenderWindow window;
     sf::Clock deltaClock;
-
     Paletka paletka;
     Pilka pilka;
     std::vector<Brick> bloki;
@@ -31,16 +30,13 @@ private:
 
     bool gameOver = false;
     GameState currentState = GameState::Menu;
-
 private:
     void processEvents();
     void update(sf::Time dt);
     void render();;
     void resetGame();
-
 public:
     Game();
     void run();
 };
-
 #endif // GAME_H

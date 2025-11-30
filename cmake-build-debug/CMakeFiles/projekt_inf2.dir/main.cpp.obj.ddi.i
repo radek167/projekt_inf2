@@ -107298,8 +107298,7 @@ namespace std
 
 
 
-
-# 7 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h"
+# 6 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h"
 class Paletka {
     private :
     float x;
@@ -107336,7 +107335,6 @@ public:
     void draw(sf::RenderTarget &target) {
         target.draw(shape);
     }
-
     float getX() const {
         return x;
     }
@@ -107349,21 +107347,22 @@ public:
     float getWysokosc() const {
         return wysokosc;
     }
+    void setPosition(float newX, float newY) {
+        x = newX;
+        y = newY;
+        shape.setPosition(sf::Vector2f(x, y));
+    }
+    void reset(float startX, float startY) {
+        x = startX;
+        y = startY;
+        shape.setPosition(sf::Vector2f(x, y));
+    }
 };
 # 7 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 1
-
-
-
-
-
-
-
+# 9 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h"
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h" 1
-# 9 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 2
-
-
-
+# 10 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 2
 
 class Pilka {
 private:
@@ -107381,10 +107380,7 @@ public:
         shape.setOrigin(sf::Vector2f(radius, radius));
         shape.setPosition(sf::Vector2f(x, y));
         shape.setFillColor(sf::Color::Red);
-
     }
-
-
     void move() {
         x = x + vx;
         y = y + vy;
@@ -107422,10 +107418,8 @@ public:
 
             return true;
         }
-
         return false;
     }
-
     void draw(sf::RenderTarget &target) {
         target.draw(shape);
     }
@@ -107441,13 +107435,22 @@ public:
     float getVy() const {
         return vy;
     };
+    sf::Vector2f getVelocity() const {
+        return sf::Vector2f(vx, vy);
+    }
     float getRadius() const {
         return radius;
     };
-};
+    void reset(float newX, float newY, float newVx, float newVy) {
+        x = newX;
+        y = newY;
+        vx = newVx;
+        vy = newVy;
+        shape.setPosition(sf::Vector2f(x, y));
+    }
+    };
 # 8 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/brick.h" 1
-
 
 
 
@@ -107468,20 +107471,18 @@ public:
     void aktualizujKolor();
     void trafienie();
     void draw(sf::RenderTarget &target) const;
+    int getHP() const {return m_punktyZycia;}
     bool m_czyZniszczony(){return m_jestZniszczony;}
-
 };
 
-
 inline Brick::Brick(sf::Vector2f startPos, sf::Vector2f rozmiar, int L) {
-    m_punktyZycia = L;
+    m_punktyZycia = std::clamp(L, 0, 3);
     m_jestZniszczony = false;
     this->setPosition(startPos);
     this->setSize(rozmiar);
     setOutlineThickness(2.f);
     aktualizujKolor();
 }
-
 inline void Brick::trafienie() {
     if (m_jestZniszczony==true)
         return;
@@ -107490,12 +107491,10 @@ inline void Brick::trafienie() {
     if (m_punktyZycia<=0)
         m_jestZniszczony=true;
 }
-
 inline void Brick::aktualizujKolor() {
     if (m_punktyZycia>=0 && m_punktyZycia<=3)
         this->setFillColor(m_colorLUT[m_punktyZycia]);
 }
-
 inline void Brick::draw(sf::RenderTarget &target) const {
     if (!m_jestZniszczony)
         target.draw(*this);
@@ -107528,44 +107527,47 @@ inline Menu::Menu(float width, float height) {
         return;
 
     sf::Text t(font);
-
     t.setFont(font);
     t.setFillColor(sf::Color::Cyan);
     t.setString("Nowa gra");
-    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 1));
+    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 1));
+    menu.push_back(t);
+
+    t.setFont(font);
+    t.setFillColor(sf::Color::Cyan);
+    t.setString(L"Wczytaj grę");
+    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 2));
     menu.push_back(t);
 
     t.setFillColor(sf::Color::White);
     t.setString("Ostatnie wyniki");
-    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 2));
+    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 3));
     menu.push_back(t);
 
     t.setFillColor(sf::Color::White);
     t.setString(L"Wyjście");
-    t.setPosition(sf::Vector2f(width / 3, height / (3 + 1) * 3));
+    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 4));
     menu.push_back(t);
 }
 
 inline void Menu::draw(sf::RenderWindow &window) const {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
         window.draw(menu[i]);
 }
-
 inline void Menu::przesunG() {
     menu[selectedItem].setFillColor(sf::Color::White);
     menu[selectedItem].setStyle(sf::Text::Regular);
     selectedItem--;
     if (selectedItem < 0)
-        selectedItem = 3 - 1;
+        selectedItem = 4 - 1;
     menu[selectedItem].setFillColor(sf::Color::Cyan);
     menu[selectedItem].setStyle(sf::Text::Bold);
 }
-
 inline void Menu::przesunD() {
     menu[selectedItem].setFillColor(sf::Color::White);
     menu[selectedItem].setStyle(sf::Text::Regular);
     selectedItem++;
-    if (selectedItem >= 3)
+    if (selectedItem >= 4)
         selectedItem = 0;
     menu[selectedItem].setFillColor(sf::Color::Cyan);
     menu[selectedItem].setStyle(sf::Text::Bold);
@@ -107578,7 +107580,6 @@ class Game {
 private:
     sf::RenderWindow window;
     sf::Clock deltaClock;
-
     Paletka paletka;
     Pilka pilka;
     std::vector<Brick> bloki;
@@ -107595,13 +107596,11 @@ private:
 
     bool gameOver = false;
     GameState currentState = GameState::Menu;
-
 private:
     void processEvents();
     void update(sf::Time dt);
     void render();;
     void resetGame();
-
 public:
     Game();
     void run();

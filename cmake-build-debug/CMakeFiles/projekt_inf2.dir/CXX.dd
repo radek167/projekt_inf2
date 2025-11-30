@@ -3,3 +3,5 @@ build CMakeFiles/projekt_inf2.dir/main.cpp.obj: dyndep
 
 build CMakeFiles/projekt_inf2.dir/game.cpp.obj: dyndep
 
+build CMakeFiles/projekt_inf2.dir/gamestate.cpp.obj: dyndep
+

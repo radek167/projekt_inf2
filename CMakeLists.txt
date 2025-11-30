@@ -18,9 +18,9 @@ add_executable(${PROJECT_NAME} main.cpp
         game.h
         game.cpp
         menu.h
-
-
-)
+        gamestate.h
+        gamestate.cpp
+        )
 # Linkujemy wszystkie potrzebne komponenty SFML
 target_link_libraries(${PROJECT_NAME} PRIVATE
         SFML::System

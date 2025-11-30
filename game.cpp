@@ -1,4 +1,5 @@
 #include "game.h"
+#include "gamestate.h"
 #include <iostream>
 
 Game::Game()
@@ -11,7 +12,6 @@ Game::Game()
     window.setFramerateLimit(60);
     resetGame();
 }
-
 void Game::run() {
     while (window.isOpen()) {
         processEvents();
@@ -21,42 +21,59 @@ void Game::run() {
         render();
     }
 }
-
 void Game::processEvents() {
     while (auto eventOpt = window.pollEvent()) {
         auto &event = *eventOpt;
-
         if (event.is<sf::Event::Closed>()) {
             window.close();
         }
-
         if (auto keyPressed = event.getIf<sf::Event::KeyPressed>()) {
             auto key = keyPressed->scancode;
-
+            if (key == sf::Keyboard::Scan::F5) {
+                StanGry stan;
+                stan.capture(paletka, pilka, bloki);
+                stan.saveToFile("zapis.txt");
+                std::cout << "Stan gry zapisany do pliku zapis.txt\n";
+            }
             if (key == sf::Keyboard::Scan::Escape) {
                 if (currentState == GameState::Playing)
                     currentState = GameState::Menu;
                 else
                     window.close();
             }
-
             if (currentState == GameState::Menu) {
                 if (key == sf::Keyboard::Scan::Up) menu.przesunG();
                 if (key == sf::Keyboard::Scan::Down) menu.przesunD();
                 if (key == sf::Keyboard::Scan::Enter) {
                     int sel = menu.getSelectedItem();
                     if (sel == 0) currentState = GameState::Playing;
-                    else if (sel == 1) currentState = GameState::Scores;
-                    else if (sel == 2) window.close();
+                    else if (sel == 1) {
+                        StanGry stan;
+                        if (stan.loadFromFile("zapis.txt")) {
+                            stan.apply(paletka, pilka, bloki, ROZMIAR_BLOKU_X, ROZMIAR_BLOKU_Y);
+                            currentState = GameState::Playing;
+                            std::cout << "Wczytano zapis!\n";
+                            gameOver = false;
+                        } else {
+                            std::cout << "Uszkodzony zapis lub on nie istnieje\n";
+                        }
+                    }
+                    else if (sel == 2) currentState = GameState::Scores;
+                    else if (sel == 3) window.close();
                 }
             }
         }
     }
 }
-
 void Game::update(sf::Time dt) {
     if (currentState != GameState::Playing) return;
-
+    StanGry zapisanyStan;
+    bool czyZapisany = false;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P)) {
+        zapisanyStan.capture(paletka, pilka, bloki);
+        czyZapisany = true;
+        std::cout << "Stan gry zapisany.\n";
+    }
     if (!gameOver) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) ||
             sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
@@ -64,20 +81,15 @@ void Game::update(sf::Time dt) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::D) ||
             sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
             paletka.moveRight();
-
         paletka.clampToBounds(640.f);
-
         pilka.move();
         pilka.collideWalls(640.f, 480.f);
-
         if (pilka.collidePaddle(paletka))
             std::cout << "HIT PADDLE\n";
-
         if (pilka.getY() + pilka.getRadius() > 600.f) {
             std::cout << "MISS! KONIEC GRY. SPACJA = RESTART\n";
             gameOver = true;
         }
-
         for (auto &blk : bloki) {
             if (!blk.m_czyZniszczony() &&
                 pilka.shape.getGlobalBounds().findIntersection(blk.getGlobalBounds())) {
@@ -86,20 +98,16 @@ void Game::update(sf::Time dt) {
                 std::cout << "HIT BRICK\n";
             }
         }
-
         for (int i = bloki.size() - 1; i >= 0; i--) {
             if (bloki[i].m_czyZniszczony())
                 bloki.erase(bloki.begin() + i);
         }
     }
-
     if (gameOver && sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
         resetGame();
 }
-
 void Game::render() {
     window.clear(sf::Color(20, 20, 30));
-
     if (currentState == GameState::Menu)
         menu.draw(window);
     else if (currentState == GameState::Playing) {
@@ -108,15 +116,12 @@ void Game::render() {
         for (auto &blk : bloki)
             blk.draw(window);
     }
-
     window.display();
 }
-
 void Game::resetGame() {
     gameOver = false;
-    paletka = Paletka(320.f, 450.f, 100.f, 20.f, 10.f);
-    pilka = Pilka(320.f, 400.f, 4.f, -4.f, 10.f);
-
+    paletka.setPosition(320.f, 450.f);
+    pilka.reset(320.f, 400.f, 4.f, -4.f);
     bloki.clear();
     for (int y = 0; y < ILOSC_WIERSZY; y++) {
         for (int x = 0; x < ILOSC_KOLUMN; x++) {

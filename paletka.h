@@ -1,9 +1,8 @@
-#include <iostream>
 #define sfml_paletka_h
 #ifndef PALETKA_H
 #define PALETKA_H
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 class Paletka {
     private :
     float x;
@@ -40,7 +39,6 @@ public:
     void draw(sf::RenderTarget &target) {
         target.draw(shape);
     }
-
     float getX() const {
         return x;
     }
@@ -53,6 +51,15 @@ public:
     float getWysokosc() const {
         return wysokosc;
     }
+    void setPosition(float newX, float newY) {
+        x = newX;
+        y = newY;
+        shape.setPosition(sf::Vector2f(x, y));
+    }
+    void reset(float startX, float startY) {
+        x = startX;
+        y = startY;
+        shape.setPosition(sf::Vector2f(x, y));
+    }
 };
-
 #endif //PALETKA_H
