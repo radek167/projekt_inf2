@@ -66,7 +66,24 @@ build CMakeFiles/projekt_inf2.dir/main.cpp.obj: CXX_COMPILER__projekt_inf2_scann
   OBJECT_FILE_DIR = CMakeFiles\projekt_inf2.dir
   dyndep = CMakeFiles/projekt_inf2.dir/CXX.dd
 
-build CMakeFiles/projekt_inf2.dir/CXX.dd | C$:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/projekt_inf2.dir/CXXModules.json CMakeFiles/projekt_inf2.dir/main.cpp.obj.modmap: CXX_DYNDEP__projekt_inf2_Debug CMakeFiles/projekt_inf2.dir/main.cpp.obj.ddi | C$:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/projekt_inf2.dir/CXXDependInfo.json
+build CMakeFiles/projekt_inf2.dir/game.cpp.obj.ddi: CXX_SCAN__projekt_inf2_Debug C$:/Users/Radek/CLionProjects/projekt_inf2/game.cpp || cmake_object_order_depends_target_projekt_inf2
+  DEP_FILE = CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi.d
+  DYNDEP_INTERMEDIATE_FILE = CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/Radek/Documents/SFML-3.0.2/include
+  OBJ_FILE = CMakeFiles\projekt_inf2.dir\game.cpp.obj
+  PREPROCESSED_OUTPUT_FILE = CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi.i
+
+build CMakeFiles/projekt_inf2.dir/game.cpp.obj: CXX_COMPILER__projekt_inf2_scanned_Debug C$:/Users/Radek/CLionProjects/projekt_inf2/game.cpp | CMakeFiles/projekt_inf2.dir/game.cpp.obj.modmap || cmake_object_order_depends_target_projekt_inf2 CMakeFiles/projekt_inf2.dir/CXX.dd
+  DEP_FILE = CMakeFiles\projekt_inf2.dir\game.cpp.obj.d
+  DYNDEP_MODULE_MAP_FILE = CMakeFiles\projekt_inf2.dir\game.cpp.obj.modmap
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Users/Radek/Documents/SFML-3.0.2/include
+  OBJECT_DIR = CMakeFiles\projekt_inf2.dir
+  OBJECT_FILE_DIR = CMakeFiles\projekt_inf2.dir
+  dyndep = CMakeFiles/projekt_inf2.dir/CXX.dd
+
+build CMakeFiles/projekt_inf2.dir/CXX.dd | C$:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/projekt_inf2.dir/CXXModules.json CMakeFiles/projekt_inf2.dir/main.cpp.obj.modmap CMakeFiles/projekt_inf2.dir/game.cpp.obj.modmap: CXX_DYNDEP__projekt_inf2_Debug CMakeFiles/projekt_inf2.dir/main.cpp.obj.ddi CMakeFiles/projekt_inf2.dir/game.cpp.obj.ddi | C$:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/projekt_inf2.dir/CXXDependInfo.json
 
 
 # =============================================================================
@@ -76,7 +93,7 @@ build CMakeFiles/projekt_inf2.dir/CXX.dd | C$:/Users/Radek/CLionProjects/projekt
 #############################################
 # Link the executable projekt_inf2.exe
 
-build projekt_inf2.exe: CXX_EXECUTABLE_LINKER__projekt_inf2_Debug CMakeFiles/projekt_inf2.dir/main.cpp.obj | C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-graphics-d.a C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-audio-d.a C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-window-d.a C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-system-d.a
+build projekt_inf2.exe: CXX_EXECUTABLE_LINKER__projekt_inf2_Debug CMakeFiles/projekt_inf2.dir/main.cpp.obj CMakeFiles/projekt_inf2.dir/game.cpp.obj | C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-graphics-d.a C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-audio-d.a C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-window-d.a C$:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-system-d.a
   FLAGS = -g
   LINK_LIBRARIES = C:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-graphics-d.a  C:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-audio-d.a  C:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-window-d.a  C:/Users/Radek/Documents/SFML-3.0.2/lib/libsfml-system-d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\projekt_inf2.dir

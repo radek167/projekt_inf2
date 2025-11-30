@@ -1,7 +1,8 @@
 #include <iostream>
 
 #define sfml_pilka_h
-
+#ifndef PILKA_H
+#define PILKA_H
 
 #include <SFML/Graphics.hpp>
 #include "paletka.h"
@@ -89,3 +90,4 @@ public:
         return radius;
     };
 };
+#endif

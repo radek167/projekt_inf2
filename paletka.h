@@ -1,6 +1,7 @@
-
 #include <iostream>
 #define sfml_paletka_h
+#ifndef PALETKA_H
+#define PALETKA_H
 #include <SFML/Graphics.hpp>
 
 class Paletka {
@@ -53,3 +54,5 @@ public:
         return wysokosc;
     }
 };
+
+#endif //PALETKA_H

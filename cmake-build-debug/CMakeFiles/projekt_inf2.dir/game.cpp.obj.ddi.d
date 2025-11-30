@@ -1,5 +1,6 @@
-CMakeFiles\projekt_inf2.dir\main.cpp.obj.ddi: \
- C:/Users/Radek/CLionProjects/projekt_inf2/main.cpp \
+CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi: \
+ C:/Users/Radek/CLionProjects/projekt_inf2/game.cpp \
+ C:/Users/Radek/CLionProjects/projekt_inf2/game.h \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Graphics.hpp \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Graphics/BlendMode.hpp \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/Graphics/Export.hpp \
@@ -305,8 +306,7 @@ CMakeFiles\projekt_inf2.dir\main.cpp.obj.ddi: \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/System/InputStream.hpp \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/System/MemoryInputStream.hpp \
  C:/Users/Radek/Documents/SFML-3.0.2/include/SFML/System/Sleep.hpp \
- C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/iostream \
- C:/Users/Radek/CLionProjects/projekt_inf2/game.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/iostream \
  C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/brick.h
