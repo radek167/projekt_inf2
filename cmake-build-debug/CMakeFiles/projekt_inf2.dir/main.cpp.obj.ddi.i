@@ -107298,7 +107298,8 @@ namespace std
 
 
 
-# 5 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h"
+
+# 6 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h"
 class Paletka {
     private :
     float x;
@@ -107361,14 +107362,16 @@ private:
     float vx;
     float vy;
     float radius;
-    sf::CircleShape shape;
+
 public:
+    sf::CircleShape shape;
     Pilka(float startX, float startY, float startVx, float startVy, float r)
         : x(startX), y(startY), vx(startVx), vy(startVy), radius(r) {
         shape.setRadius(radius);
         shape.setOrigin(sf::Vector2f(radius, radius));
         shape.setPosition(sf::Vector2f(x, y));
         shape.setFillColor(sf::Color::Red);
+
     }
 
 
@@ -107433,6 +107436,63 @@ public:
     };
 };
 # 4 "C:/Users/Radek/CLionProjects/projekt_inf2/main.cpp" 2
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/brick.h" 1
+
+
+
+
+
+
+class Brick : public sf::RectangleShape {
+    private:
+    int m_punktyZycia;
+    bool m_jestZniszczony;
+    static const std::array<sf::Color,4> m_colorLUT;
+public:
+    Brick(sf::Vector2f startPos, sf::Vector2f rozmiar, int L);
+    void aktualizujKolor();
+    void trafienie();
+    void draw(sf::RenderTarget &target) const;
+    bool m_czyZniszczony(){return m_jestZniszczony;}
+
+};
+
+
+Brick::Brick(sf::Vector2f startPos, sf::Vector2f rozmiar, int L) {
+    m_punktyZycia = L;
+    m_jestZniszczony = false;
+    this->setPosition(startPos);
+    this->setSize(rozmiar);
+    setOutlineThickness(2.f);
+    aktualizujKolor();
+}
+
+const std::array<sf::Color,4> Brick::m_colorLUT = {
+    sf::Color::Transparent,
+    sf::Color::Yellow,
+    sf::Color::Magenta,
+    sf::Color::Red
+};
+
+void Brick::trafienie() {
+    if (m_jestZniszczony==true)
+        return;
+    m_punktyZycia--;
+    aktualizujKolor();
+    if (m_punktyZycia<=0)
+        m_jestZniszczony=true;
+}
+
+void Brick::aktualizujKolor() {
+    if (m_punktyZycia>=0 && m_punktyZycia<=3)
+    this->setFillColor(m_colorLUT[m_punktyZycia]);
+}
+
+void Brick::draw(sf::RenderTarget &target) const {
+    if (!m_jestZniszczony)
+    target.draw(*this);
+}
+# 5 "C:/Users/Radek/CLionProjects/projekt_inf2/main.cpp" 2
 
 
 int main() {
@@ -107441,50 +107501,122 @@ int main() {
     sf::RenderWindow window(sf::VideoMode({640, 480}), "Arkanoid TEST");
     window.setFramerateLimit(30);
 
+    std::vector<Brick> bloki;
     Paletka paletka(320.f, 450.f, 100.f, 20.f, 10.f);
-    Pilka pilka(320.f, 240.f, 4.f, -4.f, 10.f);
+    Pilka pilka(320.f, 400.f, 4.f, -4.f, 10.f);
 
-    bool gameOver = false;
+    const int ILOSC_KOLUMN = 6;
+    const int ILOSC_WIERSZY = 7;
+    float ROZMIAR_BLOKU_X = (width -(ILOSC_KOLUMN - 1) * 2.f)/ILOSC_KOLUMN;
+    float ROZMIAR_BLOKU_Y = 25.f;
 
-    while (window.isOpen()) {
-        while (auto event = window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) window.close();
+    for (int y=0; y<ILOSC_WIERSZY; y++) {
+        for (int x=0; x<ILOSC_KOLUMN; x++) {
+            float posX = x * (ROZMIAR_BLOKU_X +2.f);
+            float posY = y * (ROZMIAR_BLOKU_Y +2.f)+60.f;
+
+            int L;
+            if (y == 0) {
+                L = 3;
+            } else if (y < 3) {
+                L = 2;
+            } else {
+                L = 1;
+            }
+
+            bloki.emplace_back(sf::Vector2f(posX,posY), sf::Vector2f(ROZMIAR_BLOKU_X,ROZMIAR_BLOKU_Y), L);
         }
+    }
 
-        if (!gameOver) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-                paletka.moveLeft();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-                paletka.moveRight();
 
-            paletka.clampToBounds(width);
-            pilka.move();
-            pilka.collideWalls(width, height);
 
-            if (pilka.collidePaddle(paletka))
-                std::cout << "HIT PADDLE\n";
+        bool gameOver = false;
 
-            if (pilka.getY() + pilka.getRadius() > height) {
-                std::cout << "MISS! KONIEC GRY\n SPACJA = RESTART\n";
-                gameOver = true;
 
+
+
+
+
+
+        while (window.isOpen()) {
+            while (auto event = window.pollEvent()) {
+                if (event->is<sf::Event::Closed>()) window.close();
+            }
+
+            if (!gameOver) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+                    paletka.moveLeft();
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+                    paletka.moveRight();
+
+                paletka.clampToBounds(width);
+                pilka.move();
+                pilka.collideWalls(width, height);
+
+                if (pilka.collidePaddle(paletka))
+                    std::cout << "HIT PADDLE\n";
+
+                if (pilka.getY() + pilka.getRadius() > height) {
+                    std::cout << "MISS! KONIEC GRY\n SPACJA = RESTART\n";
+                    gameOver = true;
+
+
+                }
+
+            }
+            if (gameOver == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+                gameOver = false;
+                paletka = Paletka(320.f, 450.f, 100.f, 20.f, 10.f);
+                pilka = Pilka(320.f, 400.f, 4.f, -4.f, 10.f);
+                bloki.clear();
+                for (int y=0; y<ILOSC_WIERSZY; y++) {
+                    for (int x=0; x<ILOSC_KOLUMN; x++) {
+                        float posX = x * (ROZMIAR_BLOKU_X +2.f);
+                        float posY = y * (ROZMIAR_BLOKU_Y +2.f)+60.f;
+
+                        int L;
+                        if (y == 0) {
+                            L = 3;
+                        } else if (y < 3) {
+                            L = 2;
+                        } else {
+                            L = 1;
+                        }
+
+                        bloki.emplace_back(sf::Vector2f(posX,posY), sf::Vector2f(ROZMIAR_BLOKU_X,ROZMIAR_BLOKU_Y), L);
+                    }
+                }
 
             }
 
+
+
+            for (auto& blk : bloki) {
+                if (!blk.m_czyZniszczony() && pilka.shape.getGlobalBounds().findIntersection(blk.getGlobalBounds()) ) {
+                    blk.trafienie();
+                    pilka.bounceY();
+                    std::cout << "HIT BRICK\n";
+                }
+                for (int i = bloki.size() -1; i >=0; i--) {
+                    if (bloki[i].m_czyZniszczony()){
+                        bloki.erase(bloki.begin() + i);
+                    }
+                }
+            }
+
+
+
+            window.clear(sf::Color(20, 20, 30));
+            paletka.draw(window);
+            pilka.draw(window);
+
+
+            for (auto& blk : bloki) {
+                blk.draw(window);
+            }
+
+            window.display();
         }
-        if (gameOver == true && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-            gameOver = false;
-            paletka = Paletka(320.f, 450.f, 100.f, 20.f, 10.f);
-            pilka = Pilka(320.f, 240.f, 4.f, -4.f, 10.f);
 
-
-        }
-
-        window.clear(sf::Color(20, 20, 30));
-        paletka.draw(window);
-        pilka.draw(window);
-        window.display();
+        return 0;
     }
-
-    return 0;
-}

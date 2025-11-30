@@ -16,14 +16,16 @@ private:
     float vx;
     float vy;
     float radius;
-    sf::CircleShape shape;
+
 public:
+    sf::CircleShape shape;
     Pilka(float startX, float startY, float startVx, float startVy, float r)
         : x(startX), y(startY), vx(startVx), vy(startVy), radius(r) {
         shape.setRadius(radius);
         shape.setOrigin(sf::Vector2f(radius, radius));
         shape.setPosition(sf::Vector2f(x, y));
         shape.setFillColor(sf::Color::Red);
+
     }
 
 

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #define sfml_paletka_h
 #include <SFML/Graphics.hpp>
