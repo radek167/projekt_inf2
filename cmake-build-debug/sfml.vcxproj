@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F4661DC0-BDEE-3CA9-8595-DE7BC2EBCB3A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>sfml</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sfml.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sfml</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sfml.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sfml</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">sfml.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">sfml</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">sfml.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">sfml</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Radek/Documents/SFML-3.0.2/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-system-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-window-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-graphics-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-audio-3.dll C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-system-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-window-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-graphics-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-audio-d.a;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/Debug/sfml.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/Debug/sfml.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Radek/Documents/SFML-3.0.2/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-system-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-window-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-graphics-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-audio-3.dll C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-system.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-window.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-graphics.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-audio.a;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/Release/sfml.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/Release/sfml.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Radek/Documents/SFML-3.0.2/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-system-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-window-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-graphics-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-audio-3.dll C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-system-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-window-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-graphics-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-audio-d.a;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/MinSizeRel/sfml.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/MinSizeRel/sfml.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/Radek/Documents/SFML-3.0.2/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>true</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Radek\Documents\SFML-3.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E copy_if_different C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-system-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-window-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-graphics-3.dll C:/Users/Radek/Documents/SFML-3.0.2/lib/cmake/SFML/../../../bin/sfml-audio-3.dll C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-system-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-window-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-graphics-d.a;C:\Users\Radek\Documents\SFML-3.0.2\lib\libsfml-audio-d.a;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/RelWithDebInfo/sfml.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/RelWithDebInfo/sfml.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Radek\CLionProjects\projekt_inf2\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Radek/CLionProjects/projekt_inf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -SC:/Users/Radek/CLionProjects/projekt_inf2 -BC:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug --check-stamp-file C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeSystem.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfig.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Radek/CLionProjects/projekt_inf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -SC:/Users/Radek/CLionProjects/projekt_inf2 -BC:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug --check-stamp-file C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeSystem.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfig.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Radek/CLionProjects/projekt_inf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -SC:/Users/Radek/CLionProjects/projekt_inf2 -BC:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug --check-stamp-file C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeSystem.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfig.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Radek/CLionProjects/projekt_inf2/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -SC:/Users/Radek/CLionProjects/projekt_inf2 -BC:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug --check-stamp-file C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeCXXCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeRCCompiler.cmake;C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\3.30.5\CMakeSystem.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLAudioSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfig.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLGraphicsSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLSystemSharedTargets.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-debug.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets-release.cmake;C:\Users\Radek\Documents\SFML-3.0.2\lib\cmake\SFML\SFMLWindowSharedTargets.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Radek\CLionProjects\projekt_inf2\main.cpp" />
+    <ClInclude Include="C:\Users\Radek\CLionProjects\projekt_inf2\paletka.h" />
+    <ClInclude Include="C:\Users\Radek\CLionProjects\projekt_inf2\pilka.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Radek\CLionProjects\projekt_inf2\cmake-build-debug\ZERO_CHECK.vcxproj">
+      <Project>{CB6CFD09-94CB-334F-B32D-BAAC25C22126}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

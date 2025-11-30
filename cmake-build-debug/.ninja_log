@@ -1,0 +1,10 @@
+# ninja log v6
+3	320	7862480694999773	build.ninja	f5b9e8edef7362b0
+4095	4545	7862133728116792	sfml.exe	11b059e8e6d44f0c
+544	584	7862133692608166	C:/Users/Radek/CLionProjects/sfml/cmake-build-debug/CMakeFiles/sfml.dir/CXXModules.json	cd9d3788918b53a0
+4	439	7862480724607155	CMakeFiles/projekt_inf2.dir/main.cpp.obj.ddi	c34d5e6c8bd9378
+439	480	7862480729287450	CMakeFiles/projekt_inf2.dir/CXX.dd	6b049b776ca9e251
+439	480	7862480729287450	C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/projekt_inf2.dir/CXXModules.json	6b049b776ca9e251
+439	480	7862480729287450	CMakeFiles/projekt_inf2.dir/main.cpp.obj.modmap	6b049b776ca9e251
+481	3530	7862480729381262	CMakeFiles/projekt_inf2.dir/main.cpp.obj	82c351af09ceb4c5
+3537	3916	7862480759935488	projekt_inf2.exe	74b1873d96562b25

@@ -1,0 +1,3 @@
+C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/projekt_inf2.dir
+C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

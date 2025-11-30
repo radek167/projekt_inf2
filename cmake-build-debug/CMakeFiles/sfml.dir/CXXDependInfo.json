@@ -1,0 +1,21 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "C:/Users/Radek/CLionProjects/sfml/cmake-build-debug",
+	"dir-cur-src" : "C:/Users/Radek/CLionProjects/sfml",
+	"dir-top-bld" : "C:/Users/Radek/CLionProjects/sfml/cmake-build-debug",
+	"dir-top-src" : "C:/Users/Radek/CLionProjects/sfml",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"C:\\Users\\Radek\\Documents\\SFML-3.0.2\\include"
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "C:/Users/Radek/CLionProjects/sfml/cmake-build-debug/CMakeFiles/sfml.dir"
+}
