@@ -7,8 +7,14 @@
 #include "pilka.h"
 #include "brick.h"
 #include "menu.h"
+#include "bonus_easymode.h"
+#include "bonus_paletka.h"
+#include "bonus_pilka.h"
 
 enum class GameState { Menu, Playing, Scores, Exiting };
+
+enum class typBonus { Brak, Pilka, Paletka, EasyMode };
+
 
 class Game {
 private:
@@ -30,13 +36,24 @@ private:
 
     bool gameOver = false;
     GameState currentState = GameState::Menu;
-private:
+    typBonus activeBonus = typBonus::Brak;
+    float timeBonus = 0.0f;
     void processEvents();
     void update(sf::Time dt);
     void render();;
     void resetGame();
+    void offActiveBonus();
 public:
+    std::vector<BonusPilka> bonusPilka;
+    std::vector<BonusPaletka> bonusPaletka;
+    std::vector<BonusModeEasy> bonusEasyMode;
     Game();
     void run();
+
+    void dodajPilka();
+    void dodajPaletka();
+    void dodajEasyMode();
 };
+
+
 #endif // GAME_H

@@ -1,3 +1,4 @@
+
 #define sfml_paletka_h
 #ifndef PALETKA_H
 #define PALETKA_H
@@ -60,6 +61,11 @@ public:
         x = startX;
         y = startY;
         shape.setPosition(sf::Vector2f(x, y));
+    }
+    void scale(float factor) {
+        szerokosc = szerokosc * factor;
+        shape.setSize(sf::Vector2f(szerokosc, wysokosc));
+        shape.setOrigin(sf::Vector2f(szerokosc / 2, wysokosc / 2));
     }
 };
 #endif //PALETKA_H

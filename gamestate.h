@@ -1,4 +1,4 @@
-#ifndef GAMESTATE_H
+﻿#ifndef GAMESTATE_H
 #define GAMESTATE_H
 
 #include "game.h"
@@ -26,8 +26,8 @@ public:
     const sf::Vector2f& getBallVelocity() const {return ballVelocity;};
     const std::vector<BlockData>& getBlocks() const {return blocks;};
 
-    bool saveToFile(const std::string& filename) const;
-    bool loadFromFile(const std::string& filename);
+bool saveToFile(const std::string& filename) const;
+bool loadFromFile(const std::string& filename);
 
     void apply (Paletka& pal, Pilka& pil, std::vector<Brick>& bloki, float blockWidth, float blockHeight) const;
 };

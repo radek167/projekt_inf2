@@ -1,4 +1,3 @@
-
 #include <iostream>
 
 #define sfml_pilka_h

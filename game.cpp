@@ -12,6 +12,7 @@ Game::Game()
     window.setFramerateLimit(60);
     resetGame();
 }
+
 void Game::run() {
     while (window.isOpen()) {
         processEvents();
@@ -21,6 +22,7 @@ void Game::run() {
         render();
     }
 }
+
 void Game::processEvents() {
     while (auto eventOpt = window.pollEvent()) {
         auto &event = *eventOpt;
@@ -46,7 +48,10 @@ void Game::processEvents() {
                 if (key == sf::Keyboard::Scan::Down) menu.przesunD();
                 if (key == sf::Keyboard::Scan::Enter) {
                     int sel = menu.getSelectedItem();
-                    if (sel == 0) currentState = GameState::Playing;
+                    if (sel == 0) {
+                        resetGame();
+                        currentState = GameState::Playing;
+                    }
                     else if (sel == 1) {
                         StanGry stan;
                         if (stan.loadFromFile("zapis.txt")) {
@@ -65,16 +70,27 @@ void Game::processEvents() {
         }
     }
 }
+
 void Game::update(sf::Time dt) {
     if (currentState != GameState::Playing) return;
-    StanGry zapisanyStan;
-    bool czyZapisany = false;
+
+    if (activeBonus != typBonus::Brak) {
+        timeBonus -= dt.asSeconds();
+        if (timeBonus <= 0.0f) {
+            offActiveBonus();
+            std::cout << "Czas bonusu minal.\n";
+        }
+    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P)) {
+        StanGry zapisanyStan;
         zapisanyStan.capture(paletka, pilka, bloki);
-        czyZapisany = true;
+        zapisanyStan.saveToFile("zapis.txt");
         std::cout << "Stan gry zapisany.\n";
     }
+
     if (!gameOver) {
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) ||
             sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
             paletka.moveLeft();
@@ -82,30 +98,69 @@ void Game::update(sf::Time dt) {
             sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Right))
             paletka.moveRight();
         paletka.clampToBounds(640.f);
+
         pilka.move();
         pilka.collideWalls(640.f, 480.f);
         if (pilka.collidePaddle(paletka))
             std::cout << "HIT PADDLE\n";
+
         if (pilka.getY() + pilka.getRadius() > 600.f) {
             std::cout << "MISS! KONIEC GRY. SPACJA = RESTART\n";
             gameOver = true;
         }
-        for (auto &blk : bloki) {
+
+        for (int i = bloki.size() - 1; i >= 0; i--) {
+            auto &blk = bloki[i];
             if (!blk.m_czyZniszczony() &&
                 pilka.shape.getGlobalBounds().findIntersection(blk.getGlobalBounds())) {
+
                 blk.trafienie();
+
                 pilka.bounceY();
                 std::cout << "HIT BRICK\n";
+
+                if (rand() % 100 < 20) {
+                    int r = rand() % 2;
+
+                    if (r == 0) bonusPaletka.emplace_back(blk.getPosition().x, blk.getPosition().y);
+                    else if (r == 1) bonusEasyMode.emplace_back(blk.getPosition().x, blk.getPosition().y);
+
+                    std::cout << "Wypadl bonus!\n";
+                }
             }
-        }
-        for (int i = bloki.size() - 1; i >= 0; i--) {
-            if (bloki[i].m_czyZniszczony())
+
+            if (blk.m_czyZniszczony())
                 bloki.erase(bloki.begin() + i);
         }
     }
+
     if (gameOver && sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Space))
         resetGame();
+
+    sf::FloatRect palRect(
+        sf::Vector2f(paletka.getX() - paletka.getSzerokosc()/2, paletka.getY() - paletka.getWysokosc()/2),
+        sf::Vector2f(paletka.getSzerokosc(), paletka.getWysokosc())
+    );
+
+    for (int i = 0; i < bonusPaletka.size(); i++) {
+        bonusPaletka[i].update();
+        if (bonusPaletka[i].getBounds().findIntersection(palRect)) {
+            bonusPaletka[i].dodaj(*this);
+            bonusPaletka.erase(bonusPaletka.begin() + i);
+            i--;
+        }
+    }
+
+    for (int i = 0; i < bonusEasyMode.size(); i++) {
+        bonusEasyMode[i].update();
+        if (bonusEasyMode[i].getBounds().findIntersection(palRect)) {
+            bonusEasyMode[i].dodaj(*this);
+            bonusEasyMode.erase(bonusEasyMode.begin() + i);
+            i--;
+        }
+    }
 }
+
 void Game::render() {
     window.clear(sf::Color(20, 20, 30));
     if (currentState == GameState::Menu)
@@ -116,12 +171,28 @@ void Game::render() {
         for (auto &blk : bloki)
             blk.draw(window);
     }
+    for (auto &b : bonusPilka) b.draw(window);
+    for (auto &b : bonusPaletka) b.draw(window);
+    for (auto &b : bonusEasyMode) b.draw(window);
     window.display();
 }
+
 void Game::resetGame() {
     gameOver = false;
+
+    if (activeBonus != typBonus::Brak) {
+        offActiveBonus();
+    }
+    activeBonus = typBonus::Brak;
+    timeBonus = 0.0f;
+
+    bonusPaletka.clear();
+    bonusPilka.clear();
+    bonusEasyMode.clear();
+
     paletka.setPosition(320.f, 450.f);
     pilka.reset(320.f, 400.f, 4.f, -4.f);
+
     bloki.clear();
     for (int y = 0; y < ILOSC_WIERSZY; y++) {
         for (int x = 0; x < ILOSC_KOLUMN; x++) {
@@ -131,4 +202,47 @@ void Game::resetGame() {
             bloki.emplace_back(sf::Vector2f(posX, posY), sf::Vector2f(ROZMIAR_BLOKU_X, ROZMIAR_BLOKU_Y), L);
         }
     }
+}
+
+void Game::dodajPilka() {
+   // niezaimplementowano ostatecznie
+}
+
+void Game::dodajPaletka() {
+    if (activeBonus == typBonus::Paletka) {
+        timeBonus = 10.0f;
+        std::cout << "Bonus Paletka przedluzony (10s)\n";
+        return;
+    }
+
+    if (activeBonus != typBonus::Brak) {
+         std::cout << "BLOKADA: Inny bonus aktywny!\n";
+         return;
+    }
+
+    activeBonus = typBonus::Paletka;
+    timeBonus = 10.0f;
+    paletka.scale(1.3f);
+    std::cout << "START: Paletka powiekszona (10s)\n";
+}
+
+void Game::dodajEasyMode() {
+    int ile_blokow = 0;
+    for (auto &b : bloki) {
+        if (b.getHP() > 1) {
+            b.setHP(1);
+            ile_blokow++;
+        }
+    }
+    std::cout << "EASY MODE ACTIVATED: Oslabiono " << ile_blokow << " klockow!\n";
+}
+
+void Game::offActiveBonus() {
+    if (activeBonus == typBonus::Paletka) {
+        paletka.scale(1.0f / 1.3f);
+        std::cout << "KONIEC: Paletka wrocila do normy\n";
+    }
+
+    activeBonus = typBonus::Brak;
+    timeBonus = 0.0f;
 }

@@ -12,15 +12,24 @@ find_package(SFML 3 REQUIRED COMPONENTS System Window Graphics Audio)
 
 # Tworzymy plik wykonywalny z main.cpp
 add_executable(${PROJECT_NAME} main.cpp
+        bonus.cpp
+        bonus.h
+        bonus_easymode.cpp
+        bonus_easymode.h
+        bonus_paletka.h
+        bonus_paletka.cpp
+        bonus_pilka.cpp
+        bonus_pilka.h
+        brick.h
+        game.cpp
+        game.h
+        gamestate.cpp
+        gamestate.h
+        main.cpp
+        menu.h
         paletka.h
         pilka.h
-        brick.h
-        game.h
-        game.cpp
-        menu.h
-        gamestate.h
-        gamestate.cpp
-        )
+)
 # Linkujemy wszystkie potrzebne komponenty SFML
 target_link_libraries(${PROJECT_NAME} PRIVATE
         SFML::System

@@ -20,6 +20,11 @@ public:
     void draw(sf::RenderTarget &target) const;
     int getHP() const {return m_punktyZycia;}
     bool m_czyZniszczony(){return m_jestZniszczony;}
+
+    void setHP(int hp) {
+        m_punktyZycia = hp;
+        aktualizujKolor();
+    }
 };
 
 inline Brick::Brick(sf::Vector2f startPos, sf::Vector2f rozmiar, int L) {
