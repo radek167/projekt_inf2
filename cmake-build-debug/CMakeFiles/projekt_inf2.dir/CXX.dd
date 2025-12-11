@@ -1,7 +1,17 @@
 ninja_dyndep_version = 1.0
 build CMakeFiles/projekt_inf2.dir/main.cpp.obj: dyndep
 
+build CMakeFiles/projekt_inf2.dir/bonus.cpp.obj: dyndep
+
+build CMakeFiles/projekt_inf2.dir/bonus_easymode.cpp.obj: dyndep
+
+build CMakeFiles/projekt_inf2.dir/bonus_paletka.cpp.obj: dyndep
+
+build CMakeFiles/projekt_inf2.dir/bonus_pilka.cpp.obj: dyndep
+
 build CMakeFiles/projekt_inf2.dir/game.cpp.obj: dyndep
 
 build CMakeFiles/projekt_inf2.dir/gamestate.cpp.obj: dyndep
+
+build CMakeFiles/projekt_inf2.dir/menu.cpp.obj: dyndep
 

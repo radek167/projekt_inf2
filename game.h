@@ -43,7 +43,15 @@ private:
     void render();;
     void resetGame();
     void offActiveBonus();
-public:
+    sf::Font font;
+    sf::Text scoreText;
+
+
+    int score = 0;
+    std::vector<std::string> highScores;
+
+
+    public:
     std::vector<BonusPilka> bonusPilka;
     std::vector<BonusPaletka> bonusPaletka;
     std::vector<BonusModeEasy> bonusEasyMode;

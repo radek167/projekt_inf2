@@ -1,15 +1,38 @@
 #include "game.h"
 #include "gamestate.h"
 #include <iostream>
+#include <fstream>
+#include <ctime>
+#include <string>
 
 Game::Game()
     : window(sf::VideoMode({640u, 480u}), "Arkanoid SFML"),
       menu(640.f, 480.f),
       paletka(320.f, 450.f, 100.f, 20.f, 10.f),
       pilka(320.f, 400.f, 4.f, -4.f, 10.f),
-      currentState(GameState::Menu)
+      currentState(GameState::Menu),
+      scoreText(font)
 {
     window.setFramerateLimit(60);
+
+    if (!font.openFromFile("arial.ttf")) {
+        std::cerr << "BLAD: Nie udalo sie wczytac czcionki arial.ttf!\n";
+    }
+
+    scoreText.setCharacterSize(24);
+    scoreText.setFillColor(sf::Color::White);
+    scoreText.setPosition({10.f, 10.f});
+    scoreText.setString("Punkty: 0");
+
+    std::ifstream input("wyniki.txt");
+    if (input.is_open()) {
+        std::string line;
+        while (std::getline(input, line)) {
+            highScores.push_back(line);
+        }
+        input.close();
+    }
+
     resetGame();
 }
 
@@ -31,18 +54,23 @@ void Game::processEvents() {
         }
         if (auto keyPressed = event.getIf<sf::Event::KeyPressed>()) {
             auto key = keyPressed->scancode;
-            if (key == sf::Keyboard::Scan::F5) {
+
+            if (key == sf::Keyboard::Scan::F5 && currentState == GameState::Playing) {
                 StanGry stan;
                 stan.capture(paletka, pilka, bloki);
                 stan.saveToFile("zapis.txt");
                 std::cout << "Stan gry zapisany do pliku zapis.txt\n";
             }
+
             if (key == sf::Keyboard::Scan::Escape) {
                 if (currentState == GameState::Playing)
+                    currentState = GameState::Menu;
+                else if (currentState == GameState::Scores)
                     currentState = GameState::Menu;
                 else
                     window.close();
             }
+
             if (currentState == GameState::Menu) {
                 if (key == sf::Keyboard::Scan::Up) menu.przesunG();
                 if (key == sf::Keyboard::Scan::Down) menu.przesunD();
@@ -63,7 +91,9 @@ void Game::processEvents() {
                             std::cout << "Uszkodzony zapis lub on nie istnieje\n";
                         }
                     }
-                    else if (sel == 2) currentState = GameState::Scores;
+                    else if (sel == 2) {
+                        currentState = GameState::Scores;
+                    }
                     else if (sel == 3) window.close();
                 }
             }
@@ -73,6 +103,8 @@ void Game::processEvents() {
 
 void Game::update(sf::Time dt) {
     if (currentState != GameState::Playing) return;
+
+    scoreText.setString("Punkty: " + std::to_string(score));
 
     if (activeBonus != typBonus::Brak) {
         timeBonus -= dt.asSeconds();
@@ -90,7 +122,6 @@ void Game::update(sf::Time dt) {
     }
 
     if (!gameOver) {
-
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::A) ||
             sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Left))
             paletka.moveLeft();
@@ -107,23 +138,45 @@ void Game::update(sf::Time dt) {
         if (pilka.getY() + pilka.getRadius() > 600.f) {
             std::cout << "MISS! KONIEC GRY. SPACJA = RESTART\n";
             gameOver = true;
+
+            auto t = std::time(nullptr);
+            std::tm tm = *std::localtime(&t);
+            char buf[64];
+            std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M", &tm);
+            std::string wpis = std::string(buf) + " - " + std::to_string(score) + " pkt";
+            highScores.push_back(wpis);
+            std::ofstream outfile("wyniki.txt", std::ios::app);
+            if (outfile.is_open()) {
+                outfile << wpis << std::endl;
+                outfile.close();
+            } else {
+                std::cerr << "Blad zapisu wynikow!\n";
+            }
         }
 
         for (int i = bloki.size() - 1; i >= 0; i--) {
             auto &blk = bloki[i];
             if (!blk.m_czyZniszczony() &&
                 pilka.shape.getGlobalBounds().findIntersection(blk.getGlobalBounds())) {
-
-                blk.trafienie();
+                if (activeBonus == typBonus::EasyMode) {
+                    blk.setHP(0);
+                } else {
+                    blk.trafienie();
+                }
 
                 pilka.bounceY();
                 std::cout << "HIT BRICK\n";
 
+                if (blk.m_czyZniszczony()) {
+                    score += 10;
+                }
+
                 if (rand() % 100 < 20) {
                     int r = rand() % 2;
-
-                    if (r == 0) bonusPaletka.emplace_back(blk.getPosition().x, blk.getPosition().y);
-                    else if (r == 1) bonusEasyMode.emplace_back(blk.getPosition().x, blk.getPosition().y);
+                    if (r == 0)
+                        bonusPaletka.emplace_back(blk.getPosition().x, blk.getPosition().y);
+                    else if (r == 1)
+                        bonusEasyMode.emplace_back(blk.getPosition().x, blk.getPosition().y);
 
                     std::cout << "Wypadl bonus!\n";
                 }
@@ -163,22 +216,32 @@ void Game::update(sf::Time dt) {
 
 void Game::render() {
     window.clear(sf::Color(20, 20, 30));
-    if (currentState == GameState::Menu)
+
+    if (currentState == GameState::Menu) {
         menu.draw(window);
+    }
     else if (currentState == GameState::Playing) {
         paletka.draw(window);
         pilka.draw(window);
         for (auto &blk : bloki)
             blk.draw(window);
+        window.draw(scoreText);
+
+        for (auto &b : bonusPilka) b.draw(window);
+        for (auto &b : bonusPaletka) b.draw(window);
+        for (auto &b : bonusEasyMode) b.draw(window);
+
     }
-    for (auto &b : bonusPilka) b.draw(window);
-    for (auto &b : bonusPaletka) b.draw(window);
-    for (auto &b : bonusEasyMode) b.draw(window);
+    else if (currentState == GameState::Scores) {
+        menu.drawScores(window, highScores);
+    }
+
     window.display();
 }
 
 void Game::resetGame() {
     gameOver = false;
+    score = 0;
 
     if (activeBonus != typBonus::Brak) {
         offActiveBonus();
@@ -205,18 +268,18 @@ void Game::resetGame() {
 }
 
 void Game::dodajPilka() {
-   // niezaimplementowano ostatecznie
+   // nieużywane
 }
 
 void Game::dodajPaletka() {
     if (activeBonus == typBonus::Paletka) {
         timeBonus = 10.0f;
-        std::cout << "Bonus Paletka przedluzony (10s)\n";
+        std::cout << "Bonus Paletka przedluzony o 10s\n";
         return;
     }
 
     if (activeBonus != typBonus::Brak) {
-         std::cout << "BLOKADA: Inny bonus aktywny!\n";
+         std::cout << "Inny bonus jest aktywny\n";
          return;
     }
 
@@ -240,9 +303,8 @@ void Game::dodajEasyMode() {
 void Game::offActiveBonus() {
     if (activeBonus == typBonus::Paletka) {
         paletka.scale(1.0f / 1.3f);
-        std::cout << "KONIEC: Paletka wrocila do normy\n";
+        std::cout << "Paletka wrocila do normy\n";
     }
-
     activeBonus = typBonus::Brak;
     timeBonus = 0.0f;
 }

@@ -4,6 +4,6 @@
 
 void BonusPaletka::dodaj(Game& game) {
     game.dodajPaletka();
-    std::cout << "Paletka została powiększona!\n";
+    std::cout << "Paletka zostala powiekszona!\n";
 }
 

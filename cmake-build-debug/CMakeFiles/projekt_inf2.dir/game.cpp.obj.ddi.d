@@ -311,4 +311,12 @@ CMakeFiles\projekt_inf2.dir\game.cpp.obj.ddi: \
  C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/brick.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/menu.h \
- C:/Users/Radek/CLionProjects/projekt_inf2/gamestate.h
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus_easymode.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus_paletka.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus_pilka.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/gamestate.h \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/fstream \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+ C:/Users/Radek/Documents/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/fstream.tcc

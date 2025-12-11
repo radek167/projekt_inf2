@@ -4,5 +4,5 @@
 
 void BonusPilka::dodaj(Game& game) {
     game.dodajPilka();
-    std::cout << "Dodano dodatkową piłkę do gry!\n";
+    std::cout << "Dodano dodatkowa pilke do gry!\n";
 }

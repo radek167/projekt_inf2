@@ -4,5 +4,5 @@
 
 void BonusModeEasy::dodaj(Game& game) {
     game.dodajEasyMode();
-    std::cout << "Tryb łatwy aktywowany!\n";
+    std::cout << "Tryb latwy aktywowany!\n";
 }

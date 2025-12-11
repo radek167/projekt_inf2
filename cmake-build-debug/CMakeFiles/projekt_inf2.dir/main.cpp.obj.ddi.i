@@ -107298,7 +107298,8 @@ namespace std
 
 
 
-# 6 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h"
+
+# 7 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h"
 class Paletka {
     private :
     float x;
@@ -107357,12 +107358,23 @@ public:
         y = startY;
         shape.setPosition(sf::Vector2f(x, y));
     }
+    void scale(float factor) {
+        szerokosc = szerokosc * factor;
+        shape.setSize(sf::Vector2f(szerokosc, wysokosc));
+        shape.setOrigin(sf::Vector2f(szerokosc / 2, wysokosc / 2));
+    }
 };
 # 7 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 1
-# 9 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h"
+
+
+
+
+
+
+
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h" 1
-# 10 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 2
+# 9 "C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h" 2
 
 class Pilka {
 private:
@@ -107462,8 +107474,8 @@ private:
     bool m_jestZniszczony;
     inline static const std::array<sf::Color,4> m_colorLUT = {
         sf::Color::Transparent,
+        sf::Color::Green,
         sf::Color::Yellow,
-        sf::Color::Magenta,
         sf::Color::Red
     };
 public:
@@ -107473,6 +107485,11 @@ public:
     void draw(sf::RenderTarget &target) const;
     int getHP() const {return m_punktyZycia;}
     bool m_czyZniszczony(){return m_jestZniszczony;}
+
+    void setHP(int hp) {
+        m_punktyZycia = hp;
+        aktualizujKolor();
+    }
 };
 
 inline Brick::Brick(sf::Vector2f startPos, sf::Vector2f rozmiar, int L) {
@@ -107501,80 +107518,91 @@ inline void Brick::draw(sf::RenderTarget &target) const {
 }
 # 9 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 # 1 "C:/Users/Radek/CLionProjects/projekt_inf2/menu.h" 1
-       
-
-
-
-
-
+# 10 "C:/Users/Radek/CLionProjects/projekt_inf2/menu.h"
 class Menu {
 private:
     sf::Font font;
     std::vector<sf::Text> menu;
-    int selectedItem = 0;
+    int selectedItem;
 
 public:
     Menu(float width, float height);
-    ~Menu() {};
+
     void przesunG();
     void przesunD();
-    int getSelectedItem() const { return selectedItem; }
+    int getSelectedItem() const;
+
     void draw(sf::RenderWindow &window) const;
+    void drawScores(sf::RenderWindow &window, const std::vector<std::string>& scores);
 };
-
-inline Menu::Menu(float width, float height) {
-    if (!font.openFromFile("arial.ttf"))
-        return;
-
-    sf::Text t(font);
-    t.setFont(font);
-    t.setFillColor(sf::Color::Cyan);
-    t.setString("Nowa gra");
-    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 1));
-    menu.push_back(t);
-
-    t.setFont(font);
-    t.setFillColor(sf::Color::Cyan);
-    t.setString(L"Wczytaj grę");
-    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 2));
-    menu.push_back(t);
-
-    t.setFillColor(sf::Color::White);
-    t.setString("Ostatnie wyniki");
-    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 3));
-    menu.push_back(t);
-
-    t.setFillColor(sf::Color::White);
-    t.setString(L"Wyjście");
-    t.setPosition(sf::Vector2f(width / 4, height / (4 + 1) * 4));
-    menu.push_back(t);
-}
-
-inline void Menu::draw(sf::RenderWindow &window) const {
-    for (int i = 0; i < 4; i++)
-        window.draw(menu[i]);
-}
-inline void Menu::przesunG() {
-    menu[selectedItem].setFillColor(sf::Color::White);
-    menu[selectedItem].setStyle(sf::Text::Regular);
-    selectedItem--;
-    if (selectedItem < 0)
-        selectedItem = 4 - 1;
-    menu[selectedItem].setFillColor(sf::Color::Cyan);
-    menu[selectedItem].setStyle(sf::Text::Bold);
-}
-inline void Menu::przesunD() {
-    menu[selectedItem].setFillColor(sf::Color::White);
-    menu[selectedItem].setStyle(sf::Text::Regular);
-    selectedItem++;
-    if (selectedItem >= 4)
-        selectedItem = 0;
-    menu[selectedItem].setFillColor(sf::Color::Cyan);
-    menu[selectedItem].setStyle(sf::Text::Bold);
-}
 # 10 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/bonus_easymode.h" 1
+
+
+
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/bonus.h" 1
+
+
+
+
+
+class Game;
+
+class Bonus {
+protected:
+  sf::RectangleShape shape;
+  float speed;
+public:
+  Bonus(float x, float y);
+
+  void update();
+  void draw(sf::RenderWindow& win);
+  sf::FloatRect getBounds() const;
+};
+# 5 "C:/Users/Radek/CLionProjects/projekt_inf2/bonus_easymode.h" 2
+
+class Game;
+
+class BonusModeEasy : public Bonus {
+  public:
+    BonusModeEasy(float x, float y)
+        : Bonus(x, y) {}
+    void dodaj(Game& game);
+};
+# 11 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/bonus_paletka.h" 1
+
+
+
+
+class Game;
+class BonusPaletka : public Bonus {
+  public:
+    BonusPaletka(float x, float y)
+        : Bonus(x, y) {}
+    void dodaj(Game& game);
+};
+# 12 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
+# 1 "C:/Users/Radek/CLionProjects/projekt_inf2/bonus_pilka.h" 1
+
+
+
+
+
+class Game;
+
+class BonusPilka : public Bonus {
+  public:
+    BonusPilka(float x, float y)
+        : Bonus(x, y) {}
+    void dodaj(Game& game);
+};
+# 13 "C:/Users/Radek/CLionProjects/projekt_inf2/game.h" 2
 
 enum class GameState { Menu, Playing, Scores, Exiting };
+
+enum class typBonus { Brak, Pilka, Paletka, EasyMode };
+
 
 class Game {
 private:
@@ -107596,19 +107624,36 @@ private:
 
     bool gameOver = false;
     GameState currentState = GameState::Menu;
-private:
+    typBonus activeBonus = typBonus::Brak;
+    float timeBonus = 0.0f;
     void processEvents();
     void update(sf::Time dt);
     void render();;
     void resetGame();
-public:
+    void offActiveBonus();
+    sf::Font font;
+    sf::Text scoreText;
+
+
+    int score = 0;
+    std::vector<std::string> highScores;
+
+
+    public:
+    std::vector<BonusPilka> bonusPilka;
+    std::vector<BonusPaletka> bonusPaletka;
+    std::vector<BonusModeEasy> bonusEasyMode;
     Game();
     void run();
+
+    void dodajPilka();
+    void dodajPaletka();
+    void dodajEasyMode();
 };
 # 4 "C:/Users/Radek/CLionProjects/projekt_inf2/main.cpp" 2
 
 int main() {
     Game game;
     game.run();
-    return 0;
-}
+        return 0;
+    }

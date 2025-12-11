@@ -9,8 +9,8 @@ private:
     bool m_jestZniszczony;// jesli zniszczony to true
     inline static const std::array<sf::Color,4> m_colorLUT = {
         sf::Color::Transparent,
+        sf::Color::Green,
         sf::Color::Yellow,
-        sf::Color::Magenta,
         sf::Color::Red
     };
 public:

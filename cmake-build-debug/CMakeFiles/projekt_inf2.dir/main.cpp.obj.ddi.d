@@ -310,4 +310,8 @@ CMakeFiles\projekt_inf2.dir\main.cpp.obj.ddi: \
  C:/Users/Radek/CLionProjects/projekt_inf2/paletka.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/pilka.h \
  C:/Users/Radek/CLionProjects/projekt_inf2/brick.h \
- C:/Users/Radek/CLionProjects/projekt_inf2/menu.h
+ C:/Users/Radek/CLionProjects/projekt_inf2/menu.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus_easymode.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus_paletka.h \
+ C:/Users/Radek/CLionProjects/projekt_inf2/bonus_pilka.h

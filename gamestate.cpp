@@ -56,7 +56,7 @@ bool StanGry::loadFromFile(const std::string& filename) {
     for (int i = 0; i < blocksCount; ++i) {
         float x, y;
         int hp;
-        file >> label >> x >> y >> hp; // spodziewamy się "BLOCK"
+        file >> label >> x >> y >> hp;
         if (label != "BLOCK") return false;
         blocks.push_back({x, y, hp});
     }

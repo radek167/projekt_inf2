@@ -5,10 +5,10 @@
 	"compiler-simulate-id" : "",
 	"config" : "Debug",
 	"cxx-modules" : {},
-	"dir-cur-bld" : "C:/Users/Radek/CLionProjects/sfml/cmake-build-debug",
-	"dir-cur-src" : "C:/Users/Radek/CLionProjects/sfml",
-	"dir-top-bld" : "C:/Users/Radek/CLionProjects/sfml/cmake-build-debug",
-	"dir-top-src" : "C:/Users/Radek/CLionProjects/sfml",
+	"dir-cur-bld" : "C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug",
+	"dir-cur-src" : "C:/Users/Radek/CLionProjects/projekt_inf2",
+	"dir-top-bld" : "C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug",
+	"dir-top-src" : "C:/Users/Radek/CLionProjects/projekt_inf2",
 	"exports" : [],
 	"forward-modules-from-target-dirs" : [],
 	"include-dirs" : 
@@ -17,5 +17,5 @@
 	],
 	"language" : "CXX",
 	"linked-target-dirs" : [],
-	"module-dir" : "C:/Users/Radek/CLionProjects/sfml/cmake-build-debug/CMakeFiles/sfml.dir"
+	"module-dir" : "C:/Users/Radek/CLionProjects/projekt_inf2/cmake-build-debug/CMakeFiles/sfml.dir"
 }

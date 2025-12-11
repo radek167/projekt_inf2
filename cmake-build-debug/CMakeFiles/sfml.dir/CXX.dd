@@ -1,7 +1,0 @@
-ninja_dyndep_version = 1.0
-build CMakeFiles/sfml.dir/main.cpp.obj: dyndep
-
-build CMakeFiles/sfml.dir/game.cpp.obj: dyndep
-
-build CMakeFiles/sfml.dir/gamestate.cpp.obj: dyndep
-
